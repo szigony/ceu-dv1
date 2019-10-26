@@ -12,6 +12,8 @@
 1. Decide what types of visualisations to use
 1. Create visuals and dashboards
 1. Present your work
+
+
 _Upload the workbook to [Tableau Online](https://eu-west-1a.online.tableau.com/#/site/ceutableau/projects/88027)_
 ### Collection
 ##### Datasets
