@@ -17,7 +17,11 @@
 _Upload the workbook to [Tableau Online](https://eu-west-1a.online.tableau.com/#/site/ceutableau/projects/88027)_
 ### Collection
 ##### Datasets
-* [NFL Football Player Stats](https://github.com/zackthoutt/nfl-player-stats)
-* [NFL Passing Statistics](https://www.kaggle.com/omzqwonxei/nfl-passing-statistics-20092018)
+* [NFL Passing Statistics 2009-2018](https://www.kaggle.com/omzqwonxei/nfl-passing-statistics-20092018) (Kaggle)
+* [NFL Standings & Team Stats](https://www.pro-football-reference.com/years/2011/) (Pro-Football-Reference.com)
 ##### Questions
-* How did the rankings change over time within the season?
+* Does the pass ratio get better with age?
+* Do more attempted passes lead to better win-loss ratio?
+* Who were the best and worst teams over the past 10 years?
+* What makes the difference between the bests and the worsts?
+* Which quarterback has the best pass ratio?
