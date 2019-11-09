@@ -13,11 +13,11 @@ I used two separate datasets to create the underlying data that would feed the T
 * Data extracts via the [tRakt](http://jemus42.github.io/tRakt/index.html) R package from [trakt.tv](http://trakt.tv/), which is a website that allows you to track the TV shows/movies that you've watched. I focused on TV shows, and I was able to pull my personal watch history, as well as supporting information (dimensions) about the TV shows.
 * And the open-source title.ratings.tsv.gz dataset from [IMDb](https://www.imdb.com/interfaces/) (*downloaded on 11/01/2019*), containing ratings and number of votes per TV show.
 
-Data pull and wrangling was performed via an [R scipt](personal-project/get_trakt_data.R).
+Data pull and wrangling was performed via an [R scipt](get_trakt_data.R).
 
 ## Data model
 
-![alt text](personal-project/data_model.PNG "Data Model")
+![alt text](data_model.PNG "Data Model")
 
 #### `my_history`
 
