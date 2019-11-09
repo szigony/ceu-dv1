@@ -18,10 +18,6 @@ view_history <- my_history %>%
 
 # Add 'watched_episodes'
 my_history <- my_history %>% 
-  inner_join(my_history %>% 
-                group_by(trakt_id) %>% 
-                summarise(watched_episodes = n()),
-             by = 'trakt_id') %>% 
   select(-c(episode_season, episode_episode, watched_at)) %>% 
   distinct()
 
@@ -29,24 +25,36 @@ my_history <- my_history %>%
 show_summary <- shows_summary(unique(my_history$trakt_id), extended = "full") %>% 
   select(trakt_id = trakt, title, runtime, certification, network, country, language, genres, aired_episodes) %>% 
   drop_na(genres) %>% 
-  unnest(genres)
+  unnest(genres) %>% 
+  inner_join(
+    my_history %>% 
+      group_by(trakt_id) %>% 
+      summarise(watched_episodes = n()),
+    by = 'trakt_id'
+  )
 
 # Combine datasets from 'trakt' and add 'is_axed' variable
 summary <- my_history %>% 
   inner_join(view_history, by = 'trakt_id') %>% 
+  inner_join(show_summary, by = 'trakt_id')
+
+axed_shows <- view_history %>%
   inner_join(show_summary, by = 'trakt_id') %>% 
-  left_join(
-    summary %>% 
-      select(trakt_id, watched_episodes, aired_episodes, watched_at) %>% 
-      filter(watched_episodes < aired_episodes) %>% 
-      group_by(trakt_id) %>% 
-      summarise(last_watched = max(watched_at)) %>% 
-      ungroup() %>% 
-      filter(last_watched < today() - years(2)) %>% 
-      mutate(is_axed = TRUE),
-    by = 'trakt_id'
-  ) %>% 
-  mutate(is_axed = replace_na(is_axed, FALSE))
+  select(trakt_id, watched_episodes, aired_episodes, watched_at) %>% 
+  filter(watched_episodes < aired_episodes) %>% 
+  group_by(trakt_id) %>% 
+  summarise(last_watched = max(watched_at)) %>% 
+  ungroup() %>% 
+  mutate(is_axed = case_when(
+    last_watched < today() - years(2) ~ TRUE,
+    TRUE ~ FALSE
+  )) %>% 
+  select(trakt_id, is_axed)
+
+summary <- show_summary %>% 
+  inner_join(axed_shows, by = 'trakt_id') %>% 
+  inner_join(view_history, by = 'trakt_id') %>% 
+  inner_join(my_history, by = 'trakt_id')
 
 ### IMDB rating dataset (https://www.imdb.com/interfaces/)
 # Downloaded on 2019/11/01
