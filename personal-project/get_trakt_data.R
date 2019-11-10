@@ -68,4 +68,4 @@ data <- summary %>%
   inner_join(ratings, by = 'imdb_id')
 
 # Save to csv
-write.csv(data, 'szigony_watch_history.csv')
+write.csv(data, 'szigony_watch_history.csv', row.names = FALSE)
