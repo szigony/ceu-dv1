@@ -11,4 +11,4 @@ Data Visualization 1: Intro to Data Visualization with Tableau class @ CEU, 2019
 * Pair Project
   * [NFL Passing Statistics and QBs](https://github.com/szigony/ceu-dv1/blob/master/pair-project/Pair%20Project%20-%20NFL%20-%20Daniel%20Molnar%2C%20Patrik%20Szigeti.twb) (in collaboration w/ [@molnardan95](https://github.com/molnardan95))
 * Personal Project
-  * TBD
+  * [My TV Viewing Habits](https://github.com/szigony/ceu-dv1/tree/master/personal-project)
